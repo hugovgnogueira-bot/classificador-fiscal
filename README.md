@@ -124,13 +124,15 @@ classificador-fiscal/
     ├── taxonomia.json            # modelo de taxonomia (4 níveis + imobilização)
     ├── plano_contas.csv          # modelo de plano de contas (Lei 6.404/76)
     ├── ncm.json                  # tabela NCM oficial (produtos)
-    └── codigo_servico.json       # lista de serviços LC 116/2003
+    ├── codigo_servico.json       # lista de serviços LC 116/2003
+    └── exemplo_lote.xlsx         # 41 itens para testar a classificação em massa
 ```
 
 A planilha em `docs/` traz as regras de decisão, as 162 combinações da taxonomia de exemplo e os
 totais por tipo e por classe. É o caminho mais rápido para entender a estrutura sem abrir o JSON.
 A apresentação percorre a jornada de um item dentro do ERP e mostra, com números, o que um erro
-de classificação custa.
+de classificação custa. A planilha `exemplo_lote.xlsx` alimenta o bloco de classificação em massa
+e traz uma aba de gabarito, com o resultado esperado de cada item, para medir a precisão.
 
 ---
 
