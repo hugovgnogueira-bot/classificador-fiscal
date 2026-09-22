@@ -53,7 +53,7 @@ Leva cerca de 5 minutos para ter tudo funcionando.
 - **Separação entre produto e serviço** — você informa a natureza e o modelo só enxerga os tipos daquela natureza, o que evita confundir a máquina com a manutenção da máquina
 - **Decisão de imobilização** — decide entre Ativo (imobilizar) ou despesa, com base no valor e nas normas CPC 27 / NBC TG 27
 - **Classe Estoque** — compra que entra no almoxarifado aponta só a conta de estoque; a conta de resultado fica com o ERP
-- **Código fiscal automático** — NCM para produtos, Código de Serviço (LC 116/2003) para serviços
+- **Código fiscal com validação** — NCM para produtos e Código de Serviço (LC 116/2003) para serviços, escolhidos entre candidatos e conferidos antes de entrar no cadastro
 - **Controle de versões** — itens com a mesma classificação viram versões, sem poluir a base com duplicatas
 - **Anexo de orçamento** — lê PDF ou imagem do orçamento para enriquecer a análise
 - **Classificação em lote** — suba uma planilha, classifique tudo de uma vez
@@ -123,7 +123,7 @@ classificador-fiscal/
 └── exemplos/
     ├── taxonomia.json            # modelo de taxonomia (4 níveis + imobilização)
     ├── plano_contas.csv          # modelo de plano de contas (Lei 6.404/76)
-    ├── ncm.json                  # tabela NCM oficial (produtos)
+    ├── ncm.json                  # tabela NCM com contexto hierárquico (produtos)
     ├── codigo_servico.json       # lista de serviços LC 116/2003
     └── exemplo_lote.xlsx         # 41 itens para testar a classificação em massa
 ```
@@ -245,8 +245,55 @@ O sistema preenche o código fiscal correto conforme a natureza informada:
 | Produto | NCM (Nomenclatura Comum do Mercosul) | Tabela oficial da Receita Federal |
 | Serviço | Código de Serviço | Lista de Serviços da LC 116/2003 |
 
-A busca é semântica: o sistema encontra o código mais compatível com a descrição e ainda
-oferece alternativas próximas, que você pode trocar na hora da validação.
+### A busca devolve candidatos, não uma decisão
+
+O código não sai do primeiro resultado da busca semântica. A escolha é um segundo passo, em
+três etapas:
+
+1. **Busca** — os 10 códigos mais próximos da descrição do item
+2. **Escolha** — o modelo enquadra entre esses 10, justifica e atribui uma confiança
+3. **Conferência** — a escolha passa por testes antes de ser aceita
+
+O que é testado:
+
+| Teste | O que pega |
+|-------|------------|
+| O código está entre os candidatos | Código inventado pelo modelo é descartado |
+| Confiança mínima de 60% | Enquadramento duvidoso |
+| Linha "Outros" havendo linha específica (NCM) | O erro clássico de cair no genérico |
+| Coerência com o subgrupo contábil (serviço) | Manutenção na contabilidade e consultoria na nota |
+
+Se nenhum candidato servir, o modelo reescreve a descrição do item nos termos da nomenclatura
+ou da lista de serviços, e a busca roda de novo. No máximo duas voltas, porque só faz sentido
+repetir quando há informação nova: perguntar duas vezes a mesma coisa devolve a mesma resposta.
+
+Cada item sai com um status, que vira coluna na classificação em lote:
+
+- `ok` — passou em todos os testes
+- `revisar` — foi enquadrado, mas um dos testes acendeu a luz amarela
+- `nao_encontrado` — nada compatível; o campo fica vazio para enquadramento manual
+
+Na revisão do Excel, filtrar por `revisar` e `nao_encontrado` separa o que precisa de olho
+humano. Para desligar a validação e voltar ao primeiro resultado da busca, mude
+`VALIDAR_NCM` ou `VALIDAR_SERVICO` para `False` no bloco de preparação.
+
+### Por que a tabela NCM precisa de contexto
+
+Boa parte das descrições da NCM só faz sentido junto do nível superior: 2.056 entradas são
+literalmente "Outros" e outras milhares são fragmentos como "De carga radial". Comparar a
+descrição de um item com esses textos não leva a lugar nenhum.
+
+Por isso o `ncm.json` de exemplo traz o campo `descricao_busca`, que junta a descrição do item
+à posição e à subposição a que ele pertence:
+
+```
+8482.10.10
+  descricao        "De carga radial"
+  descricao_busca  "De carga radial. outras partes de rolamentos. rolamentos de esferas"
+```
+
+A busca usa esse campo; o que aparece para você continua sendo a descrição oficial. A lista da
+LC 116 não precisa disso, porque cada subitem já é uma frase completa.
 
 ---
 
@@ -292,6 +339,12 @@ humana continua recomendada. Ele acelera e padroniza o trabalho, mas não substi
 julgamento contábil final. As sugestões de código fiscal (NCM e serviço) devem ser conferidas
 por um profissional, pois a responsabilidade tributária é da empresa.
 
+A validação dos códigos fiscais confere o que é conferível: se o código existe na tabela, se o
+modelo não caiu no genérico e se o enquadramento conversa com a classificação contábil. Ela não
+aplica as regras gerais de interpretação da NCM nem conhece a lista de serviços e a alíquota de
+ISS do seu município. O status `ok` significa que passou nos testes, não que a classificação
+fiscal está correta.
+
 A taxonomia de exemplo cobre imobilizado, uso e consumo e serviços. Os tipos ligados ao produto da
 empresa ficam a cargo de quem adota a automação, pelo motivo explicado acima.
 
@@ -304,6 +357,7 @@ carga inicial da próxima sessão.
 ## Roadmap
 
 - [ ] Persistência da base vetorial entre sessões
+- [ ] Votação por consistência no código fiscal (três execuções, aceita com duas iguais)
 - [ ] Taxonomia de materiais completa com NCM integrado
 - [ ] Fine-tuning com dados setoriais
 - [ ] Versão multi-empresa (SaaS)
