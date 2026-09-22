@@ -61,6 +61,7 @@ Leva cerca de 5 minutos para ter tudo funcionando.
 - **Validação humana** — nada entra na base sem sua aprovação
 - **Taxonomia customizável** — adapte a estrutura à realidade da sua empresa
 - **Validação de integridade** — verifica se toda conta referenciada existe no plano
+- **Aprendizado com o histórico** — item semelhante já aprovado por você entra como sinal na validação do código fiscal
 - **Medição de precisão** — compare com um gabarito e meça a acurácia
 
 ---
@@ -247,21 +248,37 @@ O sistema preenche o código fiscal correto conforme a natureza informada:
 
 ### A busca devolve candidatos, não uma decisão
 
-O código não sai do primeiro resultado da busca semântica. A escolha é um segundo passo, em
-três etapas:
+O código não sai do primeiro resultado da busca semântica. Para o NCM, a escolha tem quatro
+etapas:
 
-1. **Busca** — os 10 códigos mais próximos da descrição do item
-2. **Escolha** — o modelo enquadra entre esses 10, justifica e atribui uma confiança
-3. **Conferência** — a escolha passa por testes antes de ser aceita
+1. **Capítulo e tradução** — o modelo diz em que capítulo da NCM o item cai e reescreve a
+   descrição nos termos da tabela. Ninguém escreve "máquina automática para processamento de
+   dados" na requisição de compra, escreve "notebook"
+2. **Busca dentro do capítulo** — os 20 códigos mais próximos, procurados só naquele ramo
+3. **Escolha** — o modelo enquadra entre esses 20 e justifica
+4. **Conferência** — a escolha passa por testes antes de ser aceita
+
+Restringir ao capítulo faz diferença de recall. Em um teste com 20 itens, o código correto
+aparecia entre os candidatos em 60% das vezes buscando na tabela inteira com 10 candidatos, e
+em 90% buscando com 10 candidatos dentro do capítulo certo. Para chegar aos mesmos 90% sem o
+filtro seriam necessários 100 candidatos, o que triplica o consumo de tokens e ainda dispersa
+o modelo entre linhas parecidas.
 
 O que é testado:
 
 | Teste | O que pega |
 |-------|------------|
 | O código está entre os candidatos | Código inventado pelo modelo é descartado |
-| Confiança mínima de 60% | Enquadramento duvidoso |
-| Linha "Outros" havendo linha específica (NCM) | O erro clássico de cair no genérico |
+| O capítulo escolhido é o previsto | Dipirona caindo em adubos, GLP em medidores de gás |
+| Posição do escolhido na busca | Enquadramento resgatado do fim da lista |
+| Linha "Outros" havendo linha específica | O erro clássico de cair no genérico |
+| Divergência com item semelhante já aprovado | Dois cadastros parecidos com NCM diferente |
 | Coerência com o subgrupo contábil (serviço) | Manutenção na contabilidade e consultoria na nota |
+
+O status **não** vem da confiança que o modelo declara. Em um teste real, 8 de 13 itens
+marcados como corretos tinham NCM errado, com confiança média de 0,99. Confiança declarada não
+é medida de acerto, e por isso ela entra apenas como sinal fraco: os testes acima é que
+decidem.
 
 Se nenhum candidato servir, o modelo reescreve a descrição do item nos termos da nomenclatura
 ou da lista de serviços, e a busca roda de novo. No máximo duas voltas, porque só faz sentido
@@ -347,6 +364,12 @@ fiscal está correta.
 
 A taxonomia de exemplo cobre imobilizado, uso e consumo e serviços. Os tipos ligados ao produto da
 empresa ficam a cargo de quem adota a automação, pelo motivo explicado acima.
+
+No plano gratuito da Groq o limite que aperta é o de tokens por minuto. Cada item consome cerca
+de 3.100 tokens entre classificação e validação fiscal, o que dá algo como 65 itens por dia e 2
+a 3 por minuto. Para o cadastro do dia a dia sobra folga; para reclassificar um catálogo inteiro,
+não. A classificação em lote espaça as chamadas sozinha, aguarda quando a API pede e mantém na
+planilha a linha que falhou, com o motivo na coluna `observacao`.
 
 A base de conhecimento vive na memória da sessão do Colab: ao fechar o notebook, os itens
 validados se perdem. Para manter histórico, exporte a planilha do bloco de lote e recarregue na
