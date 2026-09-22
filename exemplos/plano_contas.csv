@@ -1,0 +1,447 @@
+﻿mascara,codigo,descricao,tipo_conta
+1,1,ATIVO,S
+1.1,2,ATIVO CIRCULANTE,S
+1.1.1,3,CAIXA E EQUIVALENTES DE CAIXA,S
+1.1.1.01,4,CAIXA,S
+1.1.1.01.001,5,Caixa Geral,A
+1.1.1.01.002,6,Fundo Fixo de Caixa,A
+1.1.1.02,7,BANCOS CONTA MOVIMENTO,S
+1.1.1.02.001,8,Bancos Conta Movimento,A
+1.1.1.03,9,APLICAÇÕES FINANCEIRAS DE LIQUIDEZ IMEDIATA,S
+1.1.1.03.001,10,Aplicações em CDB/RDB,A
+1.1.1.03.002,11,Fundos de Investimento de Renda Fixa,A
+1.1.2,12,CONTAS A RECEBER,S
+1.1.2.01,13,CLIENTES,S
+1.1.2.01.001,14,Clientes Nacionais,A
+1.1.2.01.002,15,Clientes no Exterior,A
+1.1.2.01.003,16,(-) Duplicatas Descontadas,A
+1.1.2.01.004,17,(-) Perdas Estimadas com Créditos de Liquidação Duvidosa,A
+1.1.2.02,18,OUTROS CRÉDITOS,S
+1.1.2.02.001,19,Adiantamentos a Fornecedores,A
+1.1.2.02.002,20,Adiantamentos de Férias,A
+1.1.2.02.003,21,Adiantamentos de 13º Salário,A
+1.1.2.02.004,22,Adiantamentos para Viagens,A
+1.1.2.02.005,23,Outros Valores a Receber,A
+1.1.3,24,ESTOQUES,S
+1.1.3.01,25,PRODUTOS ACABADOS E MERCADORIAS,S
+1.1.3.01.001,26,Produtos Acabados,A
+1.1.3.01.002,27,Mercadorias para Revenda,A
+1.1.3.02,28,PRODUTOS EM ELABORAÇÃO,S
+1.1.3.02.001,29,Produtos em Elaboração,A
+1.1.3.03,30,MATÉRIAS-PRIMAS E INSUMOS,S
+1.1.3.03.001,31,Matérias-Primas,A
+1.1.3.03.002,32,Materiais Secundários,A
+1.1.3.03.003,33,Materiais de Embalagem,A
+1.1.3.04,34,MATERIAIS DE USO E CONSUMO (ALMOXARIFADO),S
+1.1.3.04.001,35,Materiais de Uso e Consumo,A
+1.1.3.04.002,36,Peças de Reposição e Manutenção,A
+1.1.3.05,37,OUTROS ESTOQUES,S
+1.1.3.05.001,38,Estoques em Poder de Terceiros,A
+1.1.3.05.002,39,Importações em Andamento,A
+1.1.3.05.003,40,Mercadorias em Trânsito,A
+1.1.3.06,41,(-) PERDAS ESTIMADAS EM ESTOQUES,S
+1.1.3.06.001,42,(-) Ajuste ao Valor Realizável Líquido,A
+1.1.3.06.002,43,(-) Perdas por Obsolescência,A
+1.1.4,44,TRIBUTOS A RECUPERAR,S
+1.1.4.01,45,TRIBUTOS A RECUPERAR,S
+1.1.4.01.001,46,ICMS a Recuperar,A
+1.1.4.01.002,47,ICMS s/ Ativo Imobilizado a Recuperar (CIAP),A
+1.1.4.01.003,48,IPI a Recuperar,A
+1.1.4.01.004,49,PIS a Recuperar,A
+1.1.4.01.005,50,COFINS a Recuperar,A
+1.1.4.01.006,51,PIS s/ Ativo Imobilizado a Recuperar,A
+1.1.4.01.007,52,COFINS s/ Ativo Imobilizado a Recuperar,A
+1.1.4.01.008,53,CBS a Recuperar,A
+1.1.4.01.009,54,IBS a Recuperar,A
+1.1.4.01.010,55,IRRF a Recuperar,A
+1.1.4.01.011,56,IRPJ e CSLL a Compensar,A
+1.1.5,57,DESPESAS ANTECIPADAS,S
+1.1.5.01,58,DESPESAS DO EXERCÍCIO SEGUINTE,S
+1.1.5.01.001,59,Seguros a Apropriar,A
+1.1.5.01.002,60,Assinaturas e Licenças a Apropriar,A
+1.1.5.01.003,61,Outras Despesas Antecipadas,A
+1.2,62,ATIVO NÃO CIRCULANTE,S
+1.2.1,63,REALIZÁVEL A LONGO PRAZO,S
+1.2.1.01,64,CRÉDITOS DE LONGO PRAZO,S
+1.2.1.01.001,65,Depósitos Judiciais,A
+1.2.1.01.002,66,Tributos a Recuperar - Longo Prazo,A
+1.2.1.01.003,67,Créditos com Partes Relacionadas,A
+1.2.1.01.004,68,IRPJ e CSLL Diferidos Ativos,A
+1.2.2,69,INVESTIMENTOS,S
+1.2.2.01,70,PARTICIPAÇÕES SOCIETÁRIAS,S
+1.2.2.01.001,71,Participações em Controladas,A
+1.2.2.01.002,72,Outros Investimentos,A
+1.2.3,73,IMOBILIZADO,S
+1.2.3.01,74,BENS EM OPERAÇÃO,S
+1.2.3.01.001,75,Terrenos,A
+1.2.3.01.002,76,Edificações,A
+1.2.3.01.003,77,Instalações,A
+1.2.3.01.004,78,Máquinas e Equipamentos,A
+1.2.3.01.005,79,"Ferramentas, Moldes e Matrizes",A
+1.2.3.01.006,80,Móveis e Utensílios,A
+1.2.3.01.007,81,Veículos,A
+1.2.3.01.008,82,Computadores e Periféricos,A
+1.2.3.01.009,83,Aparelhos e Equipamentos de Comunicação,A
+1.2.3.01.010,84,Benfeitorias em Imóveis de Terceiros,A
+1.2.3.02,85,IMOBILIZADO EM ANDAMENTO,S
+1.2.3.02.001,86,Construções em Andamento,A
+1.2.3.02.002,87,Máquinas e Equipamentos em Montagem,A
+1.2.3.02.003,88,Instalações em Andamento,A
+1.2.3.02.004,89,Adiantamentos a Fornecedores de Imobilizado,A
+1.2.3.03,90,DIREITO DE USO - ARRENDAMENTOS (CPC 06),S
+1.2.3.03.001,91,Direito de Uso de Imóveis,A
+1.2.3.03.002,92,"Direito de Uso de Máquinas, Equipamentos e Veículos",A
+1.2.3.04,93,(-) DEPRECIAÇÃO ACUMULADA,S
+1.2.3.04.001,94,(-) Depreciação Acumulada - Edificações,A
+1.2.3.04.002,95,(-) Depreciação Acumulada - Instalações,A
+1.2.3.04.003,96,(-) Depreciação Acumulada - Máquinas e Equipamentos,A
+1.2.3.04.004,97,"(-) Depreciação Acumulada - Ferramentas, Moldes e Matrizes",A
+1.2.3.04.005,98,(-) Depreciação Acumulada - Móveis e Utensílios,A
+1.2.3.04.006,99,(-) Depreciação Acumulada - Veículos,A
+1.2.3.04.007,100,(-) Depreciação Acumulada - Computadores e Periféricos,A
+1.2.3.04.008,101,(-) Depreciação Acumulada - Aparelhos de Comunicação,A
+1.2.3.04.009,102,(-) Depreciação Acumulada - Benfeitorias em Imóveis de Terceiros,A
+1.2.3.04.010,103,(-) Depreciação Acumulada - Direito de Uso,A
+1.2.4,104,INTANGÍVEL,S
+1.2.4.01,105,INTANGÍVEL,S
+1.2.4.01.001,106,Softwares e Licenças de Uso,A
+1.2.4.01.002,107,Marcas e Patentes,A
+1.2.4.01.003,108,Intangível em Desenvolvimento,A
+1.2.4.01.004,109,Ágio por Expectativa de Rentabilidade Futura (Goodwill),A
+1.2.4.02,110,(-) AMORTIZAÇÃO ACUMULADA,S
+1.2.4.02.001,111,(-) Amortização Acumulada - Softwares e Licenças,A
+1.2.4.02.002,112,(-) Amortização Acumulada - Marcas e Patentes,A
+2,113,PASSIVO,S
+2.1,114,PASSIVO CIRCULANTE,S
+2.1.1,115,FORNECEDORES,S
+2.1.1.01,116,FORNECEDORES,S
+2.1.1.01.001,117,Fornecedores Nacionais,A
+2.1.1.01.002,118,Fornecedores Estrangeiros,A
+2.1.1.01.003,119,Fornecedores de Imobilizado,A
+2.1.2,120,EMPRÉSTIMOS E FINANCIAMENTOS,S
+2.1.2.01,121,EMPRÉSTIMOS E FINANCIAMENTOS,S
+2.1.2.01.001,122,Empréstimos Bancários,A
+2.1.2.01.002,123,Financiamentos - FINAME,A
+2.1.2.01.003,124,Financiamentos de Importação - FINIMP,A
+2.1.2.01.004,125,(-) Encargos Financeiros a Apropriar,A
+2.1.3,126,OBRIGAÇÕES TRABALHISTAS E PREVIDENCIÁRIAS,S
+2.1.3.01,127,OBRIGAÇÕES COM PESSOAL,S
+2.1.3.01.001,128,Salários a Pagar,A
+2.1.3.01.002,129,Pró-Labore a Pagar,A
+2.1.3.01.003,130,INSS a Recolher,A
+2.1.3.01.004,131,FGTS a Recolher,A
+2.1.3.02,132,PROVISÕES TRABALHISTAS,S
+2.1.3.02.001,133,Provisão de Férias e Encargos,A
+2.1.3.02.002,134,Provisão de 13º Salário e Encargos,A
+2.1.3.02.003,135,Provisão para Participação nos Lucros (PLR),A
+2.1.4,136,OBRIGAÇÕES TRIBUTÁRIAS,S
+2.1.4.01,137,TRIBUTOS A RECOLHER,S
+2.1.4.01.001,138,ICMS a Recolher,A
+2.1.4.01.002,139,IPI a Recolher,A
+2.1.4.01.003,140,PIS a Recolher,A
+2.1.4.01.004,141,COFINS a Recolher,A
+2.1.4.01.005,142,ISS a Recolher,A
+2.1.4.01.006,143,CBS a Recolher,A
+2.1.4.01.007,144,IBS a Recolher,A
+2.1.4.01.008,145,IRPJ a Recolher,A
+2.1.4.01.009,146,CSLL a Recolher,A
+2.1.4.02,147,TRIBUTOS RETIDOS A RECOLHER,S
+2.1.4.02.001,148,IRRF Retido a Recolher,A
+2.1.4.02.002,149,ISS Retido a Recolher,A
+2.1.4.02.003,150,INSS Retido a Recolher,A
+2.1.4.02.004,151,PIS/COFINS/CSLL Retidos a Recolher,A
+2.1.4.03,152,PARCELAMENTOS TRIBUTÁRIOS,S
+2.1.4.03.001,153,Parcelamentos Tributários,A
+2.1.5,154,OUTRAS OBRIGAÇÕES,S
+2.1.5.01,155,CONTAS A PAGAR,S
+2.1.5.01.001,156,Comissões a Pagar,A
+2.1.5.01.002,157,Aluguéis a Pagar,A
+2.1.5.01.003,158,"Concessionárias a Pagar (Energia, Água e Telefone)",A
+2.1.5.01.004,159,Adiantamentos de Clientes,A
+2.1.5.01.005,160,Dividendos e Juros sobre Capital Próprio a Pagar,A
+2.1.5.01.006,161,Outras Contas a Pagar,A
+2.1.5.02,162,ARRENDAMENTOS (CPC 06),S
+2.1.5.02.001,163,Passivo de Arrendamento (CPC 06 / IFRS 16),A
+2.1.5.02.002,164,(-) Juros a Apropriar sobre Arrendamentos,A
+2.1.5.03,165,PROVISÕES,S
+2.1.5.03.001,166,Provisões Diversas,A
+2.2,167,PASSIVO NÃO CIRCULANTE,S
+2.2.1,168,EXIGÍVEL A LONGO PRAZO,S
+2.2.1.01,169,EMPRÉSTIMOS E FINANCIAMENTOS - LONGO PRAZO,S
+2.2.1.01.001,170,Empréstimos Bancários - LP,A
+2.2.1.01.002,171,Financiamentos - FINAME - LP,A
+2.2.1.01.003,172,Passivo de Arrendamento - LP,A
+2.2.1.02,173,OBRIGAÇÕES TRIBUTÁRIAS - LONGO PRAZO,S
+2.2.1.02.001,174,Parcelamentos Tributários - LP,A
+2.2.1.02.002,175,IRPJ e CSLL Diferidos Passivos,A
+2.2.1.03,176,PROVISÕES - LONGO PRAZO,S
+2.2.1.03.001,177,Provisão para Contingências Trabalhistas,A
+2.2.1.03.002,178,Provisão para Contingências Cíveis,A
+2.2.1.03.003,179,Provisão para Contingências Tributárias,A
+2.3,180,PATRIMÔNIO LÍQUIDO,S
+2.3.1,181,CAPITAL SOCIAL,S
+2.3.1.01,182,CAPITAL SOCIAL,S
+2.3.1.01.001,183,Capital Social Subscrito,A
+2.3.1.01.002,184,(-) Capital a Integralizar,A
+2.3.2,185,RESERVAS,S
+2.3.2.01,186,RESERVAS DE LUCROS,S
+2.3.2.01.001,187,Reserva Legal,A
+2.3.2.01.002,188,Reserva de Incentivos Fiscais,A
+2.3.2.01.003,189,Reserva de Retenção de Lucros,A
+2.3.3,190,AJUSTES DE AVALIAÇÃO PATRIMONIAL,S
+2.3.3.01,191,AJUSTES DE AVALIAÇÃO PATRIMONIAL,S
+2.3.3.01.001,192,Ajustes de Avaliação Patrimonial,A
+2.3.4,193,LUCROS OU PREJUÍZOS ACUMULADOS,S
+2.3.4.01,194,LUCROS OU PREJUÍZOS ACUMULADOS,S
+2.3.4.01.001,195,Lucros Acumulados,A
+2.3.4.01.002,196,(-) Prejuízos Acumulados,A
+3,197,RECEITAS,S
+3.1,198,RECEITA OPERACIONAL BRUTA,S
+3.1.1,199,"VENDAS DE PRODUTOS, MERCADORIAS E SERVIÇOS",S
+3.1.1.01,200,VENDA DE PRODUTOS E MERCADORIAS,S
+3.1.1.01.001,201,Venda de Produtos - Mercado Interno,A
+3.1.1.01.002,202,Venda de Produtos - Mercado Externo,A
+3.1.1.01.003,203,Revenda de Mercadorias,A
+3.1.1.01.004,204,Venda de Subprodutos e Sucatas,A
+3.1.1.02,205,PRESTAÇÃO DE SERVIÇOS,S
+3.1.1.02.001,206,Serviços Prestados - Mercado Interno,A
+3.1.1.02.002,207,Serviços Prestados - Mercado Externo,A
+3.1.1.02.003,208,Industrialização por Encomenda,A
+3.2,209,(-) DEDUÇÕES DA RECEITA BRUTA,S
+3.2.1,210,(-) DEDUÇÕES DA RECEITA BRUTA,S
+3.2.1.01,211,(-) DEVOLUÇÕES E ABATIMENTOS,S
+3.2.1.01.001,212,(-) Devoluções de Vendas,A
+3.2.1.01.002,213,(-) Abatimentos e Descontos Incondicionais,A
+3.2.1.02,214,(-) TRIBUTOS SOBRE VENDAS E SERVIÇOS,S
+3.2.1.02.001,215,(-) ICMS sobre Vendas,A
+3.2.1.02.002,216,(-) PIS sobre Receita,A
+3.2.1.02.003,217,(-) COFINS sobre Receita,A
+3.2.1.02.004,218,(-) ISS sobre Serviços,A
+3.3,219,OUTRAS RECEITAS OPERACIONAIS,S
+3.3.1,220,OUTRAS RECEITAS OPERACIONAIS,S
+3.3.1.01,221,OUTRAS RECEITAS OPERACIONAIS,S
+3.3.1.01.001,222,Receitas de Aluguéis,A
+3.3.1.01.002,223,Ganho na Alienação de Imobilizado,A
+3.3.1.01.003,224,Recuperação de Despesas,A
+3.3.1.01.004,225,Subvenções Governamentais,A
+3.3.1.01.005,226,Reversão de Provisões,A
+3.4,227,RECEITAS FINANCEIRAS,S
+3.4.1,228,RECEITAS FINANCEIRAS,S
+3.4.1.01,229,RECEITAS FINANCEIRAS,S
+3.4.1.01.001,230,Juros Ativos,A
+3.4.1.01.002,231,Descontos Obtidos,A
+3.4.1.01.003,232,Rendimentos de Aplicações Financeiras,A
+3.4.1.01.004,233,Variações Cambiais Ativas,A
+4,234,CUSTOS E DESPESAS,S
+4.1,235,CUSTOS,S
+4.1.1,236,"CUSTO DOS PRODUTOS, MERCADORIAS E SERVIÇOS VENDIDOS",S
+4.1.1.01,237,CUSTO DAS VENDAS,S
+4.1.1.01.001,238,Custo dos Produtos Vendidos,A
+4.1.1.01.002,239,Custo das Mercadorias Vendidas,A
+4.1.1.01.003,240,Custo dos Serviços Prestados,A
+4.1.2,241,CUSTOS DE PRODUÇÃO,S
+4.1.2.01,242,MATERIAIS DIRETOS,S
+4.1.2.01.001,243,Matérias-Primas Consumidas,A
+4.1.2.01.002,244,Materiais Secundários Consumidos,A
+4.1.2.01.003,245,Materiais de Embalagem Consumidos,A
+4.1.2.02,246,MÃO DE OBRA DIRETA,S
+4.1.2.02.001,247,Salários e Ordenados - MOD,A
+4.1.2.02.002,248,INSS - MOD,A
+4.1.2.02.003,249,FGTS - MOD,A
+4.1.2.02.004,250,Férias - MOD,A
+4.1.2.02.005,251,13º Salário - MOD,A
+4.1.2.03,252,MÃO DE OBRA INDIRETA E BENEFÍCIOS,S
+4.1.2.03.001,253,Salários e Ordenados,A
+4.1.2.03.002,254,INSS,A
+4.1.2.03.003,255,FGTS,A
+4.1.2.03.004,256,Férias,A
+4.1.2.03.005,257,13º Salário,A
+4.1.2.03.006,258,Alimentação do Trabalhador (PAT),A
+4.1.2.03.007,259,Vale-Transporte e Transporte de Pessoal,A
+4.1.2.03.008,260,Assistência Médica e Exames Ocupacionais,A
+4.1.2.03.009,261,Medicamentos e Primeiros Socorros,A
+4.1.2.04,262,SERVIÇOS DE TERCEIROS NA PRODUÇÃO,S
+4.1.2.04.001,263,Manutenção de Máquinas e Equipamentos,A
+4.1.2.04.002,264,Calibração e Aferição de Equipamentos,A
+4.1.2.04.003,265,Consultoria e Assessoria,A
+4.1.2.04.004,266,Auditorias e Certificações,A
+4.1.2.04.005,267,Serviços de Tecnologia da Informação,A
+4.1.2.04.006,268,Licenças e Manutenção de Software,A
+4.1.2.04.007,269,Treinamento e Desenvolvimento,A
+4.1.2.04.008,270,Recrutamento e Seleção,A
+4.1.2.04.009,271,Vigilância e Segurança Patrimonial,A
+4.1.2.04.010,272,Limpeza e Conservação,A
+4.1.2.04.011,273,Conservação e Manutenção Predial,A
+4.1.2.04.012,274,Mão de Obra Terceirizada,A
+4.1.2.04.013,275,"Serviços de Ferramentaria, Moldes e Matrizes",A
+4.1.2.04.014,276,Tratamento e Destinação de Resíduos,A
+4.1.2.04.015,277,Industrialização por Encomenda (Beneficiamento),A
+4.1.2.04.016,278,Fretes sobre Compras,A
+4.1.2.04.017,279,Armazenagem e Movimentação,A
+4.1.2.04.018,280,Despesas de Importação,A
+4.1.2.04.019,281,Outros Serviços de Terceiros na Produção,A
+4.1.2.05,282,MATERIAIS DE USO E CONSUMO NA PRODUÇÃO,S
+4.1.2.05.001,283,Material de Expediente,A
+4.1.2.05.002,284,Suprimentos de Informática,A
+4.1.2.05.003,285,Copa e Cozinha,A
+4.1.2.05.004,286,Material de Limpeza e Higiene,A
+4.1.2.05.005,287,EPI - Equipamentos de Proteção Individual,A
+4.1.2.05.006,288,Uniformes e Vestuário,A
+4.1.2.05.007,289,Peças e Materiais de Manutenção,A
+4.1.2.05.008,290,Combustíveis e Lubrificantes,A
+4.1.2.05.009,291,Bens Duráveis de Pequeno Valor,A
+4.1.2.05.010,292,Gases Industriais,A
+4.1.2.05.011,293,Outros Materiais de Uso e Consumo,A
+4.1.2.06,294,GASTOS GERAIS DE FABRICAÇÃO,S
+4.1.2.06.001,295,Energia Elétrica,A
+4.1.2.06.002,296,Água e Esgoto,A
+4.1.2.06.003,297,"Telefonia, Internet e Correios",A
+4.1.2.06.004,298,Aluguel de Imóveis,A
+4.1.2.06.005,299,Aluguel de Máquinas e Equipamentos,A
+4.1.2.06.006,300,Aluguel de Veículos,A
+4.1.2.06.007,301,Outras Locações,A
+4.1.2.06.008,302,Despesas com Veículos,A
+4.1.2.06.009,303,Viagens e Estadias,A
+4.1.2.06.010,304,"Lanches, Refeições e Eventos Internos",A
+4.1.2.06.011,305,"Propaganda, Publicidade e Anúncios",A
+4.1.2.06.012,306,Seguros,A
+4.1.2.06.013,307,Impostos e Taxas Diversas,A
+4.1.2.06.014,308,Contribuições Sindicais e Associativas,A
+4.1.2.06.015,309,Depreciação,A
+4.2,310,DESPESAS OPERACIONAIS,S
+4.2.1,311,DESPESAS COM VENDAS,S
+4.2.1.01,312,DESPESAS COM PESSOAL - VENDAS,S
+4.2.1.01.001,313,Salários e Ordenados,A
+4.2.1.01.002,314,INSS,A
+4.2.1.01.003,315,FGTS,A
+4.2.1.01.004,316,Férias,A
+4.2.1.01.005,317,13º Salário,A
+4.2.1.01.006,318,Alimentação do Trabalhador (PAT),A
+4.2.1.01.007,319,Vale-Transporte e Transporte de Pessoal,A
+4.2.1.01.008,320,Assistência Médica e Exames Ocupacionais,A
+4.2.1.01.009,321,Medicamentos e Primeiros Socorros,A
+4.2.1.02,322,SERVIÇOS DE TERCEIROS - VENDAS,S
+4.2.1.02.001,323,Comissões sobre Vendas (Representantes),A
+4.2.1.02.002,324,Fretes sobre Vendas,A
+4.2.1.02.003,325,Despachos Aduaneiros de Exportação,A
+4.2.1.02.004,326,Consultoria e Assessoria,A
+4.2.1.02.005,327,Auditorias e Certificações,A
+4.2.1.02.006,328,Serviços de Tecnologia da Informação,A
+4.2.1.02.007,329,Licenças e Manutenção de Software,A
+4.2.1.02.008,330,Treinamento e Desenvolvimento,A
+4.2.1.02.009,331,Recrutamento e Seleção,A
+4.2.1.02.010,332,Vigilância e Segurança Patrimonial,A
+4.2.1.02.011,333,Limpeza e Conservação,A
+4.2.1.02.012,334,Conservação e Manutenção Predial,A
+4.2.1.03,335,MATERIAIS DE USO E CONSUMO - VENDAS,S
+4.2.1.03.001,336,Material de Expediente,A
+4.2.1.03.002,337,Suprimentos de Informática,A
+4.2.1.03.003,338,Copa e Cozinha,A
+4.2.1.03.004,339,Material de Limpeza e Higiene,A
+4.2.1.03.005,340,EPI - Equipamentos de Proteção Individual,A
+4.2.1.03.006,341,Uniformes e Vestuário,A
+4.2.1.03.007,342,Peças e Materiais de Manutenção,A
+4.2.1.03.008,343,Combustíveis e Lubrificantes,A
+4.2.1.03.009,344,Bens Duráveis de Pequeno Valor,A
+4.2.1.03.010,345,Brindes e Material Promocional,A
+4.2.1.03.011,346,Outros Materiais de Uso e Consumo,A
+4.2.1.04,347,DESPESAS GERAIS COM VENDAS,S
+4.2.1.04.001,348,Energia Elétrica,A
+4.2.1.04.002,349,Água e Esgoto,A
+4.2.1.04.003,350,"Telefonia, Internet e Correios",A
+4.2.1.04.004,351,Aluguel de Imóveis,A
+4.2.1.04.005,352,Aluguel de Máquinas e Equipamentos,A
+4.2.1.04.006,353,Aluguel de Veículos,A
+4.2.1.04.007,354,Outras Locações,A
+4.2.1.04.008,355,Despesas com Veículos,A
+4.2.1.04.009,356,Viagens e Estadias,A
+4.2.1.04.010,357,"Lanches, Refeições e Eventos Internos",A
+4.2.1.04.011,358,"Propaganda, Publicidade e Anúncios",A
+4.2.1.04.012,359,Seguros,A
+4.2.1.04.013,360,Impostos e Taxas Diversas,A
+4.2.1.04.014,361,Contribuições Sindicais e Associativas,A
+4.2.1.04.015,362,Depreciação,A
+4.2.1.04.016,363,"Feiras, Eventos e Convenções de Vendas",A
+4.2.1.04.017,364,Perdas Estimadas com Créditos de Liquidação Duvidosa,A
+4.2.2,365,DESPESAS ADMINISTRATIVAS,S
+4.2.2.01,366,DESPESAS COM PESSOAL - ADMINISTRATIVO,S
+4.2.2.01.001,367,Salários e Ordenados,A
+4.2.2.01.002,368,Pró-Labore,A
+4.2.2.01.003,369,INSS,A
+4.2.2.01.004,370,FGTS,A
+4.2.2.01.005,371,Férias,A
+4.2.2.01.006,372,13º Salário,A
+4.2.2.01.007,373,Alimentação do Trabalhador (PAT),A
+4.2.2.01.008,374,Vale-Transporte e Transporte de Pessoal,A
+4.2.2.01.009,375,Assistência Médica e Exames Ocupacionais,A
+4.2.2.01.010,376,Medicamentos e Primeiros Socorros,A
+4.2.2.02,377,SERVIÇOS DE TERCEIROS - ADMINISTRATIVO,S
+4.2.2.02.001,378,Honorários Advocatícios,A
+4.2.2.02.002,379,Honorários Contábeis,A
+4.2.2.02.003,380,Serviços de Gestão Ambiental,A
+4.2.2.02.004,381,Serviços de RH e Departamento Pessoal,A
+4.2.2.02.005,382,Consultoria e Assessoria,A
+4.2.2.02.006,383,Auditorias e Certificações,A
+4.2.2.02.007,384,Serviços de Tecnologia da Informação,A
+4.2.2.02.008,385,Licenças e Manutenção de Software,A
+4.2.2.02.009,386,Treinamento e Desenvolvimento,A
+4.2.2.02.010,387,Recrutamento e Seleção,A
+4.2.2.02.011,388,Vigilância e Segurança Patrimonial,A
+4.2.2.02.012,389,Limpeza e Conservação,A
+4.2.2.02.013,390,Conservação e Manutenção Predial,A
+4.2.2.02.014,391,Fretes e Carretos,A
+4.2.2.02.015,392,Armazenagem e Movimentação,A
+4.2.2.03,393,MATERIAIS DE USO E CONSUMO - ADMINISTRATIVO,S
+4.2.2.03.001,394,Material de Expediente,A
+4.2.2.03.002,395,Suprimentos de Informática,A
+4.2.2.03.003,396,Copa e Cozinha,A
+4.2.2.03.004,397,Material de Limpeza e Higiene,A
+4.2.2.03.005,398,EPI - Equipamentos de Proteção Individual,A
+4.2.2.03.006,399,Uniformes e Vestuário,A
+4.2.2.03.007,400,Peças e Materiais de Manutenção,A
+4.2.2.03.008,401,Combustíveis e Lubrificantes,A
+4.2.2.03.009,402,Bens Duráveis de Pequeno Valor,A
+4.2.2.03.010,403,Brindes e Material Promocional,A
+4.2.2.03.011,404,Outros Materiais de Uso e Consumo,A
+4.2.2.04,405,DESPESAS GERAIS ADMINISTRATIVAS,S
+4.2.2.04.001,406,Energia Elétrica,A
+4.2.2.04.002,407,Água e Esgoto,A
+4.2.2.04.003,408,"Telefonia, Internet e Correios",A
+4.2.2.04.004,409,Aluguel de Imóveis,A
+4.2.2.04.005,410,Aluguel de Máquinas e Equipamentos,A
+4.2.2.04.006,411,Aluguel de Veículos,A
+4.2.2.04.007,412,Outras Locações,A
+4.2.2.04.008,413,Despesas com Veículos,A
+4.2.2.04.009,414,Viagens e Estadias,A
+4.2.2.04.010,415,"Lanches, Refeições e Eventos Internos",A
+4.2.2.04.011,416,"Propaganda, Publicidade e Anúncios",A
+4.2.2.04.012,417,Seguros,A
+4.2.2.04.013,418,Impostos e Taxas Diversas,A
+4.2.2.04.014,419,Contribuições Sindicais e Associativas,A
+4.2.2.04.015,420,Depreciação,A
+4.2.2.04.016,421,Condomínio,A
+4.2.2.04.017,422,Amortização,A
+4.2.2.04.018,423,"Jornais, Revistas e Assinaturas",A
+4.2.2.04.019,424,Custas Judiciais e Cartorárias,A
+4.2.3,425,OUTRAS DESPESAS OPERACIONAIS,S
+4.2.3.01,426,OUTRAS DESPESAS OPERACIONAIS,S
+4.2.3.01.001,427,Perda na Alienação de Imobilizado,A
+4.2.3.01.002,428,Baixa de Bens do Imobilizado,A
+4.2.3.01.003,429,Doações e Patrocínios,A
+4.2.3.01.004,430,Multas Fiscais e Moratórias,A
+4.2.3.01.005,431,Multas de Trânsito,A
+4.3,432,DESPESAS FINANCEIRAS,S
+4.3.1,433,DESPESAS FINANCEIRAS,S
+4.3.1.01,434,DESPESAS FINANCEIRAS,S
+4.3.1.01.001,435,Juros Passivos,A
+4.3.1.01.002,436,Descontos Concedidos,A
+4.3.1.01.003,437,Variações Cambiais Passivas,A
+4.3.1.01.004,438,Tarifas Bancárias,A
+4.3.1.01.005,439,IOF,A
+4.3.1.01.006,440,Juros sobre Arrendamentos (CPC 06),A
+4.4,441,TRIBUTOS SOBRE O LUCRO,S
+4.4.1,442,PROVISÃO PARA IRPJ E CSLL,S
+4.4.1.01,443,PROVISÃO PARA IRPJ E CSLL,S
+4.4.1.01.001,444,IRPJ Corrente,A
+4.4.1.01.002,445,CSLL Corrente,A
+4.4.1.01.003,446,IRPJ e CSLL Diferidos,A

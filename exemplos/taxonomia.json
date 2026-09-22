@@ -1,0 +1,1177 @@
+{
+  "regras_imobilizacao": {
+    "descricao": "Criterios para decidir se um item deve ser imobilizado (Ativo) ou lancado como despesa/custo, conforme CPC 27 / NBC TG 27 e o limite fiscal de deducao do art. 15 do Decreto-Lei 1.598/1977, com redacao da Lei 12.973/2014.",
+    "limite_valor_reais": 1200.0,
+    "vida_util_minima_meses": 12,
+    "criterios": [
+      "Valor unitario acima do limite de R$ 1.200,00",
+      "Vida util superior a 12 meses",
+      "Gera beneficio economico futuro para a empresa",
+      "Nao e item de consumo ou reposicao imediata"
+    ],
+    "destino_se_imobilizar": {
+      "Produto": "1. Imobilizado",
+      "Servico": "9. Servicos > 14. Imobilizados"
+    },
+    "destino_se_nao_imobilizar": {
+      "Produto": "2. Uso e Consumo (bens duraveis abaixo do limite vao para 4. Bens Duraveis de Pequeno Valor). Se a compra entra no almoxarifado, use a classe Estoque; se e consumo imediato, use a classe do setor.",
+      "Servico": "9. Servicos, no grupo e na classe do setor que consome o servico"
+    },
+    "observacao": "Se o item atende TODOS os criterios acima, vai para o destino de imobilizacao conforme a natureza (Produto ou Servico). Caso contrario, segue a classificacao normal de despesa/custo. Itens de consumo, pecas de reposicao comuns e materiais de uso continuo sao despesa independente do valor."
+  },
+  "tipos": {
+    "1. Imobilizado": {
+      "natureza": "Produto",
+      "descricao": "Bens adquiridos para uso proprio por mais de 12 meses, acima do limite de imobilizacao (CPC 27). Inclui o grupo de Intangivel (CPC 04). Classe sempre Ativo.",
+      "grupos": {
+        "1. Maquinas e Equipamentos": {
+          "subgrupos": {
+            "1. Maquinas e Equipamentos Industriais": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "78",
+                  "mascara_ref": "1.2.3.01.004"
+                }
+              }
+            },
+            "2. Equipamentos de Laboratorio e Qualidade": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "78",
+                  "mascara_ref": "1.2.3.01.004"
+                }
+              }
+            },
+            "3. Empilhadeiras e Movimentacao Interna": {
+              "regra": "Empilhadeiras, paleteiras eletricas, pontes rolantes. Nao sao Veiculos.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "78",
+                  "mascara_ref": "1.2.3.01.004"
+                }
+              }
+            },
+            "4. Ferramentas, Moldes e Matrizes": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "79",
+                  "mascara_ref": "1.2.3.01.005"
+                }
+              }
+            },
+            "5. Pecas Sobressalentes Relevantes": {
+              "regra": "Pecas de alto valor, vinculadas a um equipamento especifico e usadas por mais de um periodo (CPC 27, item 8). Pecas de reposicao comuns vao para Uso e Consumo.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "78",
+                  "mascara_ref": "1.2.3.01.004"
+                }
+              }
+            }
+          }
+        },
+        "2. Informatica e Comunicacao": {
+          "subgrupos": {
+            "1. Computadores e Perifericos": {
+              "regra": "Notebooks, desktops, monitores, impressoras.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "82",
+                  "mascara_ref": "1.2.3.01.008"
+                }
+              }
+            },
+            "2. Servidores e Equipamentos de Rede": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "82",
+                  "mascara_ref": "1.2.3.01.008"
+                }
+              }
+            },
+            "3. Aparelhos de Comunicacao": {
+              "regra": "Celulares, radios, centrais telefonicas.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "83",
+                  "mascara_ref": "1.2.3.01.009"
+                }
+              }
+            }
+          }
+        },
+        "3. Moveis, Utensilios e Instalacoes": {
+          "subgrupos": {
+            "1. Moveis e Utensilios": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "80",
+                  "mascara_ref": "1.2.3.01.006"
+                }
+              }
+            },
+            "2. Instalacoes": {
+              "regra": "Instalacoes eletricas, hidraulicas, ar-condicionado central, sistemas de incendio.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "77",
+                  "mascara_ref": "1.2.3.01.003"
+                }
+              }
+            }
+          }
+        },
+        "4. Veiculos": {
+          "subgrupos": {
+            "1. Veiculos Automotores": {
+              "regra": "Carros, motos, caminhoes e utilitarios.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "81",
+                  "mascara_ref": "1.2.3.01.007"
+                }
+              }
+            }
+          }
+        },
+        "5. Imoveis": {
+          "subgrupos": {
+            "1. Terrenos": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "75",
+                  "mascara_ref": "1.2.3.01.001"
+                }
+              }
+            },
+            "2. Edificacoes": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "76",
+                  "mascara_ref": "1.2.3.01.002"
+                }
+              }
+            },
+            "3. Benfeitorias em Imoveis de Terceiros": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "84",
+                  "mascara_ref": "1.2.3.01.010"
+                }
+              }
+            }
+          }
+        },
+        "6. Imobilizado em Andamento": {
+          "subgrupos": {
+            "1. Maquinas e Equipamentos em Montagem": {
+              "regra": "Bem adquirido que ainda nao entrou em operacao.",
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "87",
+                  "mascara_ref": "1.2.3.02.002"
+                }
+              }
+            },
+            "2. Adiantamentos a Fornecedores de Imobilizado": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "89",
+                  "mascara_ref": "1.2.3.02.004"
+                }
+              }
+            }
+          }
+        },
+        "7. Intangivel": {
+          "regra": "Ativos sem substancia fisica (CPC 04). Assinatura mensal ou anual de software (SaaS) nao e intangivel: e servico, em 9. Servicos > TI e Software.",
+          "subgrupos": {
+            "1. Softwares e Licencas Perpetuas": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "106",
+                  "mascara_ref": "1.2.4.01.001"
+                }
+              }
+            },
+            "2. Marcas e Patentes": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "107",
+                  "mascara_ref": "1.2.4.01.002"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "2. Uso e Consumo": {
+      "natureza": "Produto",
+      "descricao": "Materiais consumidos na operacao que nao se incorporam ao produto final, e bens duraveis abaixo do limite de imobilizacao. A classe segue o setor que consome.",
+      "regra": "Use a classe Estoque quando a compra entra no almoxarifado: o cadastro aponta apenas a conta de estoque de materiais de uso e consumo, e a conta de resultado que recebe a baixa e definida na requisicao pela parametrizacao do ERP (centro de custo, natureza de movimento), fora do escopo deste classificador. Use as classes de setor (Producao, Administrativo, Vendas) quando a compra e de consumo imediato e vai direto para resultado, sem passar por estoque.",
+      "grupos": {
+        "1. Materiais Administrativos e de Escritorio": {
+          "subgrupos": {
+            "1. Material de Expediente": {
+              "regra": "Papel, canetas, pastas, envelopes.",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "283",
+                  "mascara_ref": "4.1.2.05.001"
+                },
+                "Administrativo": {
+                  "conta_ref": "394",
+                  "mascara_ref": "4.2.2.03.001"
+                },
+                "Vendas": {
+                  "conta_ref": "336",
+                  "mascara_ref": "4.2.1.03.001"
+                }
+              }
+            },
+            "2. Suprimentos de Informatica": {
+              "regra": "Toner, cartuchos, cabos, mouse, teclado, pendrive.",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "284",
+                  "mascara_ref": "4.1.2.05.002"
+                },
+                "Administrativo": {
+                  "conta_ref": "395",
+                  "mascara_ref": "4.2.2.03.002"
+                },
+                "Vendas": {
+                  "conta_ref": "337",
+                  "mascara_ref": "4.2.1.03.002"
+                }
+              }
+            },
+            "3. Copa e Cozinha": {
+              "regra": "Cafe, acucar, agua mineral, descartaveis.",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "285",
+                  "mascara_ref": "4.1.2.05.003"
+                },
+                "Administrativo": {
+                  "conta_ref": "396",
+                  "mascara_ref": "4.2.2.03.003"
+                },
+                "Vendas": {
+                  "conta_ref": "338",
+                  "mascara_ref": "4.2.1.03.003"
+                }
+              }
+            },
+            "4. Brindes e Material Promocional": {
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Administrativo": {
+                  "conta_ref": "403",
+                  "mascara_ref": "4.2.2.03.010"
+                },
+                "Vendas": {
+                  "conta_ref": "345",
+                  "mascara_ref": "4.2.1.03.010"
+                }
+              }
+            }
+          }
+        },
+        "2. Limpeza, Higiene e Seguranca": {
+          "subgrupos": {
+            "1. Material de Limpeza e Higiene": {
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "286",
+                  "mascara_ref": "4.1.2.05.004"
+                },
+                "Administrativo": {
+                  "conta_ref": "397",
+                  "mascara_ref": "4.2.2.03.004"
+                },
+                "Vendas": {
+                  "conta_ref": "339",
+                  "mascara_ref": "4.2.1.03.004"
+                }
+              }
+            },
+            "2. EPI - Equipamentos de Protecao Individual": {
+              "regra": "Luvas, oculos, protetor auricular, calcados de seguranca (itens com CA).",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "287",
+                  "mascara_ref": "4.1.2.05.005"
+                },
+                "Administrativo": {
+                  "conta_ref": "398",
+                  "mascara_ref": "4.2.2.03.005"
+                },
+                "Vendas": {
+                  "conta_ref": "340",
+                  "mascara_ref": "4.2.1.03.005"
+                }
+              }
+            },
+            "3. Uniformes e Vestuario": {
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "288",
+                  "mascara_ref": "4.1.2.05.006"
+                },
+                "Administrativo": {
+                  "conta_ref": "399",
+                  "mascara_ref": "4.2.2.03.006"
+                },
+                "Vendas": {
+                  "conta_ref": "341",
+                  "mascara_ref": "4.2.1.03.006"
+                }
+              }
+            },
+            "4. Medicamentos e Primeiros Socorros": {
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "261",
+                  "mascara_ref": "4.1.2.03.009"
+                },
+                "Administrativo": {
+                  "conta_ref": "376",
+                  "mascara_ref": "4.2.2.01.010"
+                },
+                "Vendas": {
+                  "conta_ref": "321",
+                  "mascara_ref": "4.2.1.01.009"
+                }
+              }
+            }
+          }
+        },
+        "3. Manutencao e Operacao": {
+          "subgrupos": {
+            "1. Pecas e Materiais de Manutencao": {
+              "regra": "Rolamentos, correias, parafusos, material eletrico e hidraulico de reposicao.",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "289",
+                  "mascara_ref": "4.1.2.05.007"
+                },
+                "Administrativo": {
+                  "conta_ref": "400",
+                  "mascara_ref": "4.2.2.03.007"
+                },
+                "Vendas": {
+                  "conta_ref": "342",
+                  "mascara_ref": "4.2.1.03.007"
+                }
+              }
+            },
+            "2. Combustiveis e Lubrificantes": {
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "290",
+                  "mascara_ref": "4.1.2.05.008"
+                },
+                "Administrativo": {
+                  "conta_ref": "401",
+                  "mascara_ref": "4.2.2.03.008"
+                },
+                "Vendas": {
+                  "conta_ref": "343",
+                  "mascara_ref": "4.2.1.03.008"
+                }
+              }
+            },
+            "3. Gases Industriais": {
+              "regra": "GLP para empilhadeira, nitrogenio, oxigenio, CO2.",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "292",
+                  "mascara_ref": "4.1.2.05.010"
+                }
+              }
+            }
+          }
+        },
+        "4. Bens Duraveis de Pequeno Valor": {
+          "subgrupos": {
+            "1. Bens de Pequeno Valor": {
+              "regra": "Ferramentas manuais, moveis e equipamentos com valor unitario ate o limite de imobilizacao ou vida util de ate 12 meses.",
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "291",
+                  "mascara_ref": "4.1.2.05.009"
+                },
+                "Administrativo": {
+                  "conta_ref": "402",
+                  "mascara_ref": "4.2.2.03.009"
+                },
+                "Vendas": {
+                  "conta_ref": "344",
+                  "mascara_ref": "4.2.1.03.009"
+                }
+              }
+            }
+          }
+        },
+        "5. Outros Materiais de Uso e Consumo": {
+          "subgrupos": {
+            "1. Materiais Diversos": {
+              "classes": {
+                "Estoque": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "293",
+                  "mascara_ref": "4.1.2.05.011"
+                },
+                "Administrativo": {
+                  "conta_ref": "404",
+                  "mascara_ref": "4.2.2.03.011"
+                },
+                "Vendas": {
+                  "conta_ref": "346",
+                  "mascara_ref": "4.2.1.03.011"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "9. Servicos": {
+      "natureza": "Servico",
+      "descricao": "Servicos tomados de terceiros (manutencao, consultoria, frete, etc.)",
+      "grupos": {
+        "1. Manutencao e Suporte Tecnico": {
+          "subgrupos": {
+            "1. Manutencao de Maquinas": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "263",
+                  "mascara_ref": "4.1.2.04.001"
+                }
+              }
+            },
+            "2. Calibracao de Equipamentos": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "264",
+                  "mascara_ref": "4.1.2.04.002"
+                }
+              }
+            },
+            "3. Conservacao/Manutencao Predial": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "273",
+                  "mascara_ref": "4.1.2.04.011"
+                },
+                "Administrativo": {
+                  "conta_ref": "390",
+                  "mascara_ref": "4.2.2.02.013"
+                },
+                "Vendas": {
+                  "conta_ref": "334",
+                  "mascara_ref": "4.2.1.02.012"
+                }
+              }
+            }
+          }
+        },
+        "2. Logistica e Frete": {
+          "subgrupos": {
+            "1. Frete sobre Entradas Materiais Prod": {
+              "regra": "Frete de compra de materiais produtivos compoe o custo do estoque (CPC 16, item 11).",
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "31",
+                  "mascara_ref": "1.1.3.03.001"
+                }
+              }
+            },
+            "2. Frete sobre Entradas Materiais Adm": {
+              "regra": "Frete de compra de materiais de uso e consumo compoe o custo do estoque.",
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "35",
+                  "mascara_ref": "1.1.3.04.001"
+                }
+              }
+            },
+            "3. Frete sobre Entradas (Cte Avulso)": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "278",
+                  "mascara_ref": "4.1.2.04.016"
+                },
+                "Administrativo": {
+                  "conta_ref": "391",
+                  "mascara_ref": "4.2.2.02.014"
+                }
+              }
+            },
+            "4. Frete e Carretos sobre Vendas": {
+              "classes": {
+                "Vendas": {
+                  "conta_ref": "324",
+                  "mascara_ref": "4.2.1.02.002"
+                }
+              }
+            },
+            "5. Armazenagem": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "279",
+                  "mascara_ref": "4.1.2.04.017"
+                },
+                "Administrativo": {
+                  "conta_ref": "392",
+                  "mascara_ref": "4.2.2.02.015"
+                }
+              }
+            },
+            "6. Frota de Veiculos": {
+              "classes": {
+                "Vendas": {
+                  "conta_ref": "355",
+                  "mascara_ref": "4.2.1.04.008"
+                },
+                "Administrativo": {
+                  "conta_ref": "413",
+                  "mascara_ref": "4.2.2.04.008"
+                }
+              }
+            }
+          }
+        },
+        "3. Servicos Profissionais": {
+          "subgrupos": {
+            "1. Honorarios Advocaticios": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "378",
+                  "mascara_ref": "4.2.2.02.001"
+                }
+              }
+            },
+            "2. Honorarios Contabeis": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "379",
+                  "mascara_ref": "4.2.2.02.002"
+                }
+              }
+            },
+            "3. Consultoria Empresarial": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "382",
+                  "mascara_ref": "4.2.2.02.005"
+                }
+              }
+            },
+            "4. Consultoria": {
+              "classes": {
+                "Vendas": {
+                  "conta_ref": "326",
+                  "mascara_ref": "4.2.1.02.004"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "265",
+                  "mascara_ref": "4.1.2.04.003"
+                }
+              }
+            },
+            "5. Auditoria": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "383",
+                  "mascara_ref": "4.2.2.02.006"
+                },
+                "Vendas": {
+                  "conta_ref": "327",
+                  "mascara_ref": "4.2.1.02.005"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "266",
+                  "mascara_ref": "4.1.2.04.004"
+                }
+              }
+            },
+            "6. Gestao Ambiental": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "380",
+                  "mascara_ref": "4.2.2.02.003"
+                }
+              }
+            },
+            "7. Comissao": {
+              "classes": {
+                "Vendas": {
+                  "conta_ref": "323",
+                  "mascara_ref": "4.2.1.02.001"
+                }
+              }
+            }
+          }
+        },
+        "4. TI e Software": {
+          "subgrupos": {
+            "1. Manutencao de Software de Gestao": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "385",
+                  "mascara_ref": "4.2.2.02.008"
+                }
+              }
+            },
+            "2. Servicos de TI": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "384",
+                  "mascara_ref": "4.2.2.02.007"
+                }
+              }
+            },
+            "3. Informatica": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "384",
+                  "mascara_ref": "4.2.2.02.007"
+                },
+                "Vendas": {
+                  "conta_ref": "328",
+                  "mascara_ref": "4.2.1.02.006"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "267",
+                  "mascara_ref": "4.1.2.04.005"
+                }
+              }
+            }
+          }
+        },
+        "5. RH, Treinamento e Saude Ocup.": {
+          "subgrupos": {
+            "1. Cursos e Treinamentos": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "386",
+                  "mascara_ref": "4.2.2.02.009"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "269",
+                  "mascara_ref": "4.1.2.04.007"
+                }
+              }
+            },
+            "2. Servicos de RH": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "381",
+                  "mascara_ref": "4.2.2.02.004"
+                }
+              }
+            },
+            "3. Recrutamento e Selecao": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "387",
+                  "mascara_ref": "4.2.2.02.010"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "270",
+                  "mascara_ref": "4.1.2.04.008"
+                }
+              }
+            },
+            "4. Exames e Convenios Medicos": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "375",
+                  "mascara_ref": "4.2.2.01.009"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "260",
+                  "mascara_ref": "4.1.2.03.008"
+                },
+                "Vendas": {
+                  "conta_ref": "320",
+                  "mascara_ref": "4.2.1.01.008"
+                }
+              }
+            },
+            "5. Medicamentos": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "261",
+                  "mascara_ref": "4.1.2.03.009"
+                },
+                "Administrativo": {
+                  "conta_ref": "376",
+                  "mascara_ref": "4.2.2.01.010"
+                },
+                "Vendas": {
+                  "conta_ref": "321",
+                  "mascara_ref": "4.2.1.01.009"
+                }
+              }
+            },
+            "6. Programa de Alimentacao do Trabalhador (PAT)": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "258",
+                  "mascara_ref": "4.1.2.03.006"
+                },
+                "Administrativo": {
+                  "conta_ref": "373",
+                  "mascara_ref": "4.2.2.01.007"
+                },
+                "Vendas": {
+                  "conta_ref": "318",
+                  "mascara_ref": "4.2.1.01.006"
+                }
+              }
+            },
+            "7. Cafe, Lanches e Eventos Alimenticios": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "415",
+                  "mascara_ref": "4.2.2.04.010"
+                },
+                "Vendas": {
+                  "conta_ref": "357",
+                  "mascara_ref": "4.2.1.04.010"
+                }
+              }
+            },
+            "8. Transporte Funcionario": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "259",
+                  "mascara_ref": "4.1.2.03.007"
+                },
+                "Administrativo": {
+                  "conta_ref": "374",
+                  "mascara_ref": "4.2.2.01.008"
+                },
+                "Vendas": {
+                  "conta_ref": "319",
+                  "mascara_ref": "4.2.1.01.007"
+                }
+              }
+            }
+          }
+        },
+        "6. Facilities": {
+          "subgrupos": {
+            "1. Vigilancia e Seguranca": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "388",
+                  "mascara_ref": "4.2.2.02.011"
+                },
+                "Vendas": {
+                  "conta_ref": "332",
+                  "mascara_ref": "4.2.1.02.010"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "271",
+                  "mascara_ref": "4.1.2.04.009"
+                }
+              }
+            },
+            "2. Limpeza": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "389",
+                  "mascara_ref": "4.2.2.02.012"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "272",
+                  "mascara_ref": "4.1.2.04.010"
+                }
+              }
+            },
+            "3. Agua e Esgoto": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "296",
+                  "mascara_ref": "4.1.2.06.002"
+                },
+                "Administrativo": {
+                  "conta_ref": "407",
+                  "mascara_ref": "4.2.2.04.002"
+                }
+              }
+            },
+            "4. Correios e Telefones": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "408",
+                  "mascara_ref": "4.2.2.04.003"
+                },
+                "Vendas": {
+                  "conta_ref": "350",
+                  "mascara_ref": "4.2.1.04.003"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "297",
+                  "mascara_ref": "4.1.2.06.003"
+                }
+              }
+            }
+          }
+        },
+        "7. Locacoes": {
+          "subgrupos": {
+            "1. Locacao de Equipamentos": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "410",
+                  "mascara_ref": "4.2.2.04.005"
+                },
+                "Vendas": {
+                  "conta_ref": "352",
+                  "mascara_ref": "4.2.1.04.005"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "299",
+                  "mascara_ref": "4.1.2.06.005"
+                }
+              }
+            },
+            "2. Locacao de Veiculos": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "411",
+                  "mascara_ref": "4.2.2.04.006"
+                },
+                "Vendas": {
+                  "conta_ref": "353",
+                  "mascara_ref": "4.2.1.04.006"
+                },
+                "Producao (C.I.)": {
+                  "conta_ref": "300",
+                  "mascara_ref": "4.1.2.06.006"
+                }
+              }
+            },
+            "3. Locacao (geral)": {
+              "classes": {
+                "Vendas": {
+                  "conta_ref": "354",
+                  "mascara_ref": "4.2.1.04.007"
+                }
+              }
+            },
+            "4. Aluguel de Fabricas": {
+              "classes": {
+                "Administrativo": {
+                  "conta_ref": "409",
+                  "mascara_ref": "4.2.2.04.004"
+                }
+              }
+            },
+            "5. Provisoes IFRS 16": {
+              "classes": {
+                "Provisoes": {
+                  "conta_ref": "163",
+                  "mascara_ref": "2.1.5.02.001"
+                }
+              }
+            }
+          }
+        },
+        "8. Servicos Produtivos Especificos": {
+          "subgrupos": {
+            "1. Elaboracao de Cliches": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "275",
+                  "mascara_ref": "4.1.2.04.013"
+                }
+              }
+            },
+            "2. Facas e Cilindros": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "275",
+                  "mascara_ref": "4.1.2.04.013"
+                }
+              }
+            },
+            "3. Tratamento de Residuos": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "276",
+                  "mascara_ref": "4.1.2.04.014"
+                }
+              }
+            },
+            "4. Mao de Obra de Terceiros - Producao": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "274",
+                  "mascara_ref": "4.1.2.04.012"
+                }
+              }
+            },
+            "5. Servicos Tomados na Producao (geral)": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "281",
+                  "mascara_ref": "4.1.2.04.019"
+                }
+              }
+            },
+            "6. Importacao - Pecas em Garantia": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "280",
+                  "mascara_ref": "4.1.2.04.018"
+                }
+              }
+            },
+            "7. Custos de Importacao": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "280",
+                  "mascara_ref": "4.1.2.04.018"
+                }
+              }
+            }
+          }
+        },
+        "9. Servicos Prestados (Receita)": {
+          "subgrupos": {
+            "1. Servico Prestado - Mercado Interno": {
+              "classes": {
+                "Receita": {
+                  "conta_ref": "206",
+                  "mascara_ref": "3.1.1.02.001"
+                }
+              }
+            },
+            "2. Servico Prestado - Mercado Externo": {
+              "classes": {
+                "Receita": {
+                  "conta_ref": "207",
+                  "mascara_ref": "3.1.1.02.002"
+                }
+              }
+            },
+            "3. Locacao de Imoveis": {
+              "classes": {
+                "Receita": {
+                  "conta_ref": "222",
+                  "mascara_ref": "3.3.1.01.001"
+                }
+              }
+            }
+          }
+        },
+        "10. Viagens": {
+          "subgrupos": {
+            "1. Hospedagem/Alimentacao/Transporte": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "303",
+                  "mascara_ref": "4.1.2.06.009"
+                },
+                "Administrativo": {
+                  "conta_ref": "414",
+                  "mascara_ref": "4.2.2.04.009"
+                },
+                "Vendas": {
+                  "conta_ref": "356",
+                  "mascara_ref": "4.2.1.04.009"
+                }
+              }
+            }
+          }
+        },
+        "11. Impostos e Taxas Diversas": {
+          "subgrupos": {
+            "1. Impostos e Taxas Diversas": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "307",
+                  "mascara_ref": "4.1.2.06.013"
+                },
+                "Administrativo": {
+                  "conta_ref": "418",
+                  "mascara_ref": "4.2.2.04.013"
+                },
+                "Vendas": {
+                  "conta_ref": "360",
+                  "mascara_ref": "4.2.1.04.013"
+                }
+              }
+            },
+            "2. Contribuicao Sindical/Assistencial": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "308",
+                  "mascara_ref": "4.1.2.06.014"
+                },
+                "Administrativo": {
+                  "conta_ref": "419",
+                  "mascara_ref": "4.2.2.04.014"
+                },
+                "Vendas": {
+                  "conta_ref": "361",
+                  "mascara_ref": "4.2.1.04.014"
+                }
+              }
+            }
+          }
+        },
+        "12. Seguros": {
+          "subgrupos": {
+            "1. Seguros": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "306",
+                  "mascara_ref": "4.1.2.06.012"
+                },
+                "Administrativo": {
+                  "conta_ref": "417",
+                  "mascara_ref": "4.2.2.04.012"
+                },
+                "Vendas": {
+                  "conta_ref": "359",
+                  "mascara_ref": "4.2.1.04.012"
+                }
+              }
+            }
+          }
+        },
+        "13. Marketing": {
+          "subgrupos": {
+            "1. Anuncios": {
+              "classes": {
+                "Producao (C.I.)": {
+                  "conta_ref": "305",
+                  "mascara_ref": "4.1.2.06.011"
+                },
+                "Administrativo": {
+                  "conta_ref": "416",
+                  "mascara_ref": "4.2.2.04.011"
+                },
+                "Vendas": {
+                  "conta_ref": "358",
+                  "mascara_ref": "4.2.1.04.011"
+                }
+              }
+            }
+          }
+        },
+        "14. Imobilizados": {
+          "regra": "Servicos que agregam valor a um ativo em formacao (obra, montagem, instalacao) e atendem as regras de imobilizacao.",
+          "subgrupos": {
+            "1. Maquinas": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "87",
+                  "mascara_ref": "1.2.3.02.002"
+                }
+              }
+            },
+            "2. Obras Civis": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "86",
+                  "mascara_ref": "1.2.3.02.001"
+                }
+              }
+            },
+            "3. Instalacoes": {
+              "classes": {
+                "Ativo": {
+                  "conta_ref": "88",
+                  "mascara_ref": "1.2.3.02.003"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "_orientacao_novos_tipos": {
+    "descricao": "Tipos de item particulares de cada empresa, como Materia-Prima, Insumos, Embalagens, Produto Acabado e Mercadoria para Revenda, nao fazem parte deste modelo. Para incluir, crie um novo tipo dentro de 'tipos' seguindo a mesma estrutura e informe a natureza (Produto ou Servico). Este bloco e ignorado pelo notebook.",
+    "numeracao_sugerida": "Os numeros 3 a 8 ficam livres para os tipos da empresa.",
+    "exemplo": {
+      "3. Materia-Prima": {
+        "natureza": "Produto",
+        "descricao": "Materiais que se incorporam ao produto final.",
+        "grupos": {
+          "1. <Nome do grupo>": {
+            "subgrupos": {
+              "1. <Nome do subgrupo>": {
+                "classes": {
+                  "Producao (C.I.)": {
+                    "conta_ref": "31",
+                    "mascara_ref": "1.1.3.03.001"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
