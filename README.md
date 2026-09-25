@@ -120,7 +120,7 @@ do que você informou, e o sistema aplica mesmo que o modelo sugira outra coisa:
 | NCM | O que você informar tem prioridade sobre qualquer sugestão |
 
 Isso tira do modelo três campos que ele errava por conta própria e torna o resultado auditável:
-dado o subgrupo e o setor, a conta é sempre a mesma, com ou sem IA.
+dado o tipo de item, o grupo, o subgrupo e o setor, a conta é sempre a mesma, com ou sem IA.
 
 Duas conferências de valor acompanham o resultado, e são justamente as que pegam o erro caro:
 item classificado como Ativo com valor unitário abaixo do limite, e produto acima do limite que
