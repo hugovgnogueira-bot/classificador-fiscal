@@ -144,7 +144,9 @@ classificador-fiscal/
     ├── plano_contas.csv          # modelo de plano de contas (Lei 6.404/76)
     ├── ncm.json                  # tabela NCM com contexto hierárquico (produtos)
     ├── codigo_servico.json       # lista de serviços LC 116/2003
-    └── exemplo_lote.xlsx         # 41 itens de teste, com NCM do fornecedor e gabarito
+    ├── template_carga_inicial.xlsx   # modelo para a carga inicial (bloco 6.5)
+    ├── template_lote.xlsx            # modelo para a classificação em massa (bloco 8)
+    └── exemplo_lote.xlsx             # 41 itens de teste, com NCM do fornecedor e gabarito
 ```
 
 A planilha em `docs/` traz as regras de decisão, as 162 combinações da taxonomia de exemplo e os
@@ -152,6 +154,10 @@ totais por tipo e por classe. É o caminho mais rápido para entender a estrutur
 A apresentação percorre a jornada de um item dentro do ERP e mostra, com números, o que um erro
 de classificação custa. A planilha `exemplo_lote.xlsx` alimenta o bloco de classificação em massa
 e traz uma aba de gabarito, com o resultado esperado de cada item, para medir a precisão.
+
+Os dois `template_*.xlsx` são os arquivos para o dia a dia: apague as linhas de exemplo, coloque
+os seus itens e suba. Cada um traz uma aba explicando coluna por coluna, o que é obrigatório e o
+que muda no resultado.
 
 ---
 
