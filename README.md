@@ -101,12 +101,30 @@ O bloco de classificação pergunta, nesta ordem:
 | 1 | É produto ou serviço? (P / S) | Limita os tipos da taxonomia e define se o código fiscal será NCM ou Serviço |
 | 2 | Descrição do item | Entrada principal da classificação e da busca semântica |
 | 3 | Aplicação | Contexto de uso, decisivo em itens ambíguos |
-| 4 | Setor (Produção / Administrativo / Vendas) | Define a classe e, com ela, a conta de resultado |
-| 5 | A compra entra em estoque? (s/N) | Só para produto. Ver [Estoque](#estoque-onde-a-automação-para) |
-| 6 | Valor unitário | Entra na regra de imobilização |
+| 4 | Setor (Produção / Administrativo / Vendas) | **É a classe.** Define a conta de resultado |
+| 5 | NCM (opcional, só produto) | Se você tem o NCM da nota, o sistema confere em vez de calcular |
+| 6 | A compra entra em estoque? (s/N) | Só para produto. Ver [Estoque](#estoque-onde-a-automação-para) |
+| 7 | Valor unitário | Entra na regra de imobilização |
 
-As perguntas 1 e 5 são decisão sua, não do modelo. O sistema aplica as duas antes de gravar,
-mesmo que o modelo tenha sugerido outra coisa.
+### O que é regra e o que é modelo
+
+O modelo decide só o que exige interpretação: **tipo, grupo e subgrupo**. O resto é consequência
+do que você informou, e o sistema aplica mesmo que o modelo sugira outra coisa:
+
+| Campo | Como é decidido |
+|-------|-----------------|
+| Natureza | Você responde |
+| Classe | Entrou em estoque, é Estoque; senão é o setor que você informou; subgrupo de classe única (Ativo, Receita, Provisões) não admite escolha |
+| Imobilizar | Decorre da classe ser Ativo |
+| Conta contábil | Sai da combinação tipo, grupo, subgrupo e classe na taxonomia |
+| NCM | O que você informar tem prioridade sobre qualquer sugestão |
+
+Isso tira do modelo três campos que ele errava por conta própria e torna o resultado auditável:
+dado o subgrupo e o setor, a conta é sempre a mesma, com ou sem IA.
+
+Duas conferências de valor acompanham o resultado, e são justamente as que pegam o erro caro:
+item classificado como Ativo com valor unitário abaixo do limite, e produto acima do limite que
+não foi imobilizado. As duas saem na coluna `alertas`.
 
 ---
 
@@ -126,7 +144,7 @@ classificador-fiscal/
     ├── plano_contas.csv          # modelo de plano de contas (Lei 6.404/76)
     ├── ncm.json                  # tabela NCM com contexto hierárquico (produtos)
     ├── codigo_servico.json       # lista de serviços LC 116/2003
-    └── exemplo_lote.xlsx         # 41 itens para testar a classificação em massa
+    └── exemplo_lote.xlsx         # 41 itens de teste, com NCM do fornecedor e gabarito
 ```
 
 A planilha em `docs/` traz as regras de decisão, as 162 combinações da taxonomia de exemplo e os
@@ -248,15 +266,25 @@ O sistema preenche o código fiscal correto conforme a natureza informada:
 
 ### A busca devolve candidatos, não uma decisão
 
-O código não sai do primeiro resultado da busca semântica. Para o NCM, a escolha tem quatro
-etapas:
+**O NCM que você informar vale mais que qualquer sugestão.** O fornecedor manda o NCM na nota, e
+esse é o dado bom. Na classificação em lote, preencha a coluna `ncm`; no item avulso, responda a
+pergunta do NCM. O sistema então não calcula: confere se o código existe na tabela e se o
+capítulo conversa com o tipo de item, avisa quando algo não fecha, e ainda economiza uma chamada
+à API. O cálculo abaixo só roda quando o campo vem vazio.
+
+Sem o NCM informado, a escolha tem quatro etapas:
 
 1. **Capítulo e tradução** — o modelo diz em que capítulo da NCM o item cai e reescreve a
    descrição nos termos da tabela. Ninguém escreve "máquina automática para processamento de
-   dados" na requisição de compra, escreve "notebook"
-2. **Busca dentro do capítulo** — os 20 códigos mais próximos, procurados só naquele ramo
-3. **Escolha** — o modelo enquadra entre esses 20 e justifica
+   dados" na requisição de compra, escreve "notebook". Isso sai na mesma resposta da
+   classificação contábil, sem custar uma chamada extra
+2. **Busca dentro do capítulo** — os 12 códigos mais próximos, procurados só naquele ramo
+3. **Escolha** — o modelo enquadra entre esses 12 e justifica
 4. **Conferência** — a escolha passa por testes antes de ser aceita
+
+Se nada dentro do capítulo servir, uma última busca percorre a tabela inteira e o resultado vem
+marcado como `revisar`, com o motivo "fora do capítulo previsto". É melhor entregar uma sugestão
+para conferir do que um campo vazio.
 
 Restringir ao capítulo faz diferença de recall. Em um teste com 20 itens, o código correto
 aparecia entre os candidatos em 60% das vezes buscando na tabela inteira com 10 candidatos, e
@@ -286,13 +314,26 @@ repetir quando há informação nova: perguntar duas vezes a mesma coisa devolve
 
 Cada item sai com um status, que vira coluna na classificação em lote:
 
+- `informado` — veio de você, conferido contra a tabela
 - `ok` — passou em todos os testes
 - `revisar` — foi enquadrado, mas um dos testes acendeu a luz amarela
+- `nao_aplicavel` — o item não tem código de serviço a informar (ver abaixo)
 - `nao_encontrado` — nada compatível; o campo fica vazio para enquadramento manual
 
 Na revisão do Excel, filtrar por `revisar` e `nao_encontrado` separa o que precisa de olho
 humano. Para desligar a validação e voltar ao primeiro resultado da busca, mude
 `VALIDAR_NCM` ou `VALIDAR_SERVICO` para `False` no bloco de preparação.
+
+### Nem toda despesa tem código de serviço
+
+Obrigar o modelo a escolher sempre um subitem da LC 116 produz enquadramento errado com cara de
+certo. Locação de empilhadeira não é serviço: a Súmula Vinculante 31 do STF afastou o ISS sobre
+locação de bem móvel. Frete interestadual é ICMS. Seguro, juro, multa e tributo não são serviços
+de terceiros.
+
+Nesses casos o campo sai vazio, com status `nao_aplicavel` e a justificativa, em vez do subitem
+mais parecido. O sistema sugerindo `15.03 Locação e manutenção de cofres` para uma empilhadeira
+alugada não é um erro de busca, é uma pergunta mal formulada.
 
 ### Por que a tabela NCM precisa de contexto
 
@@ -365,15 +406,35 @@ fiscal está correta.
 A taxonomia de exemplo cobre imobilizado, uso e consumo e serviços. Os tipos ligados ao produto da
 empresa ficam a cargo de quem adota a automação, pelo motivo explicado acima.
 
-No plano gratuito da Groq o limite que aperta é o de tokens por minuto. Cada item consome cerca
-de 3.100 tokens entre classificação e validação fiscal, o que dá algo como 65 itens por dia e 2
-a 3 por minuto. Para o cadastro do dia a dia sobra folga; para reclassificar um catálogo inteiro,
-não. A classificação em lote espaça as chamadas sozinha, aguarda quando a API pede e mantém na
-planilha a linha que falhou, com o motivo na coluna `observacao`.
+O exemplo que acompanha o repositório é de **indústria no lucro real**. Uma empresa do Simples
+Nacional, uma prestadora de serviços ou um comércio têm plano de contas mais enxuto e outra
+lógica de crédito, então a taxonomia delas será menor e diferente. A estrutura aguenta, mas os
+arquivos de `exemplos/` são ponto de partida, não modelo a copiar.
 
-A base de conhecimento vive na memória da sessão do Colab: ao fechar o notebook, os itens
-validados se perdem. Para manter histórico, exporte a planilha do bloco de lote e recarregue na
-carga inicial da próxima sessão.
+Os arquivos são de preenchimento obrigatório por quem adota a ferramenta: taxonomia, plano de
+contas, regras de imobilização, tabela NCM e lista de códigos de serviço. Nada disso é opcional,
+e é essa definição prévia que faz a classificação ser auditável em vez de opinião.
+
+No plano gratuito da Groq os dois limites que aparecem são o de tokens por minuto e o de tokens
+por dia. Entre classificação, código fiscal e os tokens de raciocínio do modelo, cada item consome perto
+de 3.500 tokens, o que dá algo em torno de 55 itens por dia. O consumo cai mais se você reduzir
+o esforço de raciocínio do modelo: a constante `ESFORCO_RACIOCINIO`, no bloco de preparação,
+aceita `"low"` e corta quase pela metade o que é gasto pensando. Vale medir o efeito na precisão
+pelo Bloco 10 antes de adotar. Para o cadastro
+do dia a dia sobra folga; para reclassificar um catálogo inteiro, não.
+
+A classificação em lote lida com os dois limites de formas diferentes. O limite por minuto ela
+absorve: espaça as chamadas e espera os poucos segundos que a API pedir. O limite diário ela
+reconhece pela espera longa, encerra o lote e guarda o que já foi feito. O resultado é gravado
+a cada item, então uma queda do Colab ou o fim da cota não custam nada: o que rodou sai pelo
+Bloco 9 e os itens que faltaram vêm prontos em `itens_pendentes.xlsx`, para você subir no dia
+seguinte.
+
+A base de conhecimento vive na memória da sessão do Colab. A memória de verdade é o ERP da
+empresa: baixe a listagem de itens ativos já classificados e carregue na carga inicial no começo
+de cada sessão, ou ao menos uma vez por semana. Incluindo as colunas `ncm` e `codigo_servico`
+nessa listagem, o histórico fiscal também passa a valer como sinal, e um item novo que divergir
+de um parecido já cadastrado sai marcado para conferência.
 
 ---
 
